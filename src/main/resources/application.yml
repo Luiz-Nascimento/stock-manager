@@ -5,8 +5,8 @@ spring:
   datasource:
     url: jdbc:postgresql://dpg-d416scu3jp1c73cm0pn0-a.virginia-postgres.render.com:5432/stock_manager_ypyc
     driver-class-name: org.postgresql.Driver
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
   jpa:
     hibernate:

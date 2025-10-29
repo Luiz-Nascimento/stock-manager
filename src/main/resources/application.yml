@@ -2,7 +2,7 @@ spring:
   application:
     name: demo
   datasource:
-    url: jdbc:postgresql://localhost:5432/stock_manager?stringtype=unspecified
+    url: jdbc:postgresql://jotanunes-db-get-info-database.b.aivencloud.com:21733/stock_manager?sslmode=require
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:

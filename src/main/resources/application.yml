@@ -1,11 +1,11 @@
 spring:
   application:
     name: demo
+
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://jotanunes-db-get-info-database.b.aivencloud.com:21733/stock_manager?sslmode=require}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${AZURE_POSTGRESQL_CONNECTIONSTRING:jdbc:postgresql://localhost:5432/postgres}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,3 +17,4 @@ spring:
 
 server:
   port: ${PORT:8080}
+

@@ -1,5 +1,6 @@
 package com.projeto_engenharia.demo.controller;
 
+import com.projeto_engenharia.demo.dto.DashboardStatsResponse;
 import com.projeto_engenharia.demo.dto.ProdutoRequest;
 import com.projeto_engenharia.demo.dto.ProdutoResponse;
 import com.projeto_engenharia.demo.dto.ProdutoUpdate;
@@ -47,4 +48,5 @@ public class ProdutoController {
         service.deletarProdutoPorId(id);
         return ResponseEntity.noContent().build();
     }
+
 }

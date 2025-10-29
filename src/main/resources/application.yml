@@ -9,12 +9,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false  # Mude para false em produção
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-# Porta do servidor (Railway usa a variável PORT)
 server:
   port: ${PORT:8080}

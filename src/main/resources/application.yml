@@ -2,13 +2,19 @@ spring:
   application:
     name: demo
   datasource:
-    url: jdbc:postgresql://jotanunes-db-get-info-database.b.aivencloud.com:21733/stock_manager?sslmode=require
+    url: ${DATABASE_URL:jdbc:postgresql://jotanunes-db-get-info-database.b.aivencloud.com:21733/stock_manager?sslmode=require}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false  # Mude para false em produção
     properties:
-        hibernate:
-          format_sql: true
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Porta do servidor (Railway usa a variável PORT)
+server:
+  port: ${PORT:8080}

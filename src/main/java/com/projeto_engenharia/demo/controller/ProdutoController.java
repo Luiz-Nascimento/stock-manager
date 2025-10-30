@@ -5,6 +5,7 @@ import com.projeto_engenharia.demo.dto.ProdutoRequest;
 import com.projeto_engenharia.demo.dto.ProdutoResponse;
 import com.projeto_engenharia.demo.dto.ProdutoUpdate;
 import com.projeto_engenharia.demo.service.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoResponse> criarProduto(@RequestBody ProdutoRequest request) {
+    public ResponseEntity<ProdutoResponse> criarProduto(@RequestBody @Valid ProdutoRequest request) {
         ProdutoResponse response = service.criarProduto(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponse> atualizarProduto(@PathVariable Long id, @RequestBody ProdutoUpdate data) {
+    public ResponseEntity<ProdutoResponse> atualizarProduto(@PathVariable Long id, @RequestBody @Valid ProdutoUpdate data) {
         ProdutoResponse response = service.atualizarProduto(id, data);
         return ResponseEntity.ok(response);
     }

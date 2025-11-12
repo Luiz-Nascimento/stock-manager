@@ -107,33 +107,6 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-		    <plugin>
-		        <groupId>com.microsoft.azure</groupId>
-		        <artifactId>azure-webapp-maven-plugin</artifactId>
-		        <version>2.14.1</version>
-		        <configuration>
-		            <schemaVersion>v2</schemaVersion>
-		            <resourceGroup>demo-1761762882218-rg</resourceGroup>
-		            <appName>demo-1761762882218</appName>
-		            <pricingTier>F1</pricingTier>
-		            <region>centralus</region>
-		            <runtime>
-		                <os>Linux</os>
-		                <javaVersion>Java 21</javaVersion>
-		                <webContainer>Java SE</webContainer>
-		            </runtime>
-		            <deployment>
-		                <resources>
-		                    <resource>
-		                        <directory>${project.basedir}/target</directory>
-		                        <includes>
-		                            <include>*.jar</include>
-		                        </includes>
-		                    </resource>
-		                </resources>
-		            </deployment>
-		        </configuration>
-		    </plugin>
 		</plugins>
 	</build>
 

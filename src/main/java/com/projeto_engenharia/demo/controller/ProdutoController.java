@@ -22,8 +22,8 @@ public class ProdutoController {
         this.service = service;
     }
     @GetMapping
-    public List<ProdutoResponse> listarTodos() {
-        return service.listarTodos();
+    public List<ProdutoResponse> listarTodos(@RequestParam(name = "filtro", required = false) String filtro) {
+        return service.listarTodos(filtro);
     }
 
     @GetMapping("/{id}")

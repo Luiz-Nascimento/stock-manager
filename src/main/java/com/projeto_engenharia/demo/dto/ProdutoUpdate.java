@@ -1,5 +1,6 @@
 package com.projeto_engenharia.demo.dto;
 
+import com.projeto_engenharia.demo.enums.CategoriaProduto;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
@@ -15,6 +16,8 @@ public record ProdutoUpdate(
         @DecimalMin(value = "0.01", message = "O preço não pode ser menor que 0.01")
         @DecimalMax(value = "5000", message = "O preço não pode exceder 5000 reais")
         BigDecimal preco,
+        @NotNull(message = "Categoria do produto não pode estar nula")
+        CategoriaProduto categoriaProduto,
         @PositiveOrZero(message = "Quantidade não pode ser negativa")
         Integer quantidade
 ) {

@@ -21,13 +21,57 @@ public class ProdutoService {
     private final ProdutoRepository repository;
     private final ProdutoMapper produtoMapper;
 
+    private static final int ESTOQUE_BAIXO_LIMITE = 10;
+
     public ProdutoService(ProdutoRepository repository, ProdutoMapper produtoMapper) {
         this.repository = repository;
         this.produtoMapper = produtoMapper;
     }
 
-    public List<ProdutoResponse> listarTodos() {
-        return produtoMapper.toDTOList(repository.findAll());
+    public List<ProdutoResponse> listarTodos(String filtro) {
+
+        List<Produto> produtos;
+
+        if (filtro == null) {
+            // 1. Nenhum filtro, retorna todos
+            produtos = repository.findAll();
+        } else {
+            // Lógica de data (copiada do seu getDashboardStatistics)
+            Date hoje = new Date();
+            Calendar cal7 = Calendar.getInstance();
+            cal7.setTime(hoje);
+            cal7.add(Calendar.DAY_OF_MONTH, 7);
+            Date daqui7Dias = cal7.getTime();
+
+            // 2. Um 'switch' para decidir qual query chamar
+            switch (filtro.toUpperCase()) {
+                case "VENCIDOS":
+                    produtos = repository.findByValidadeBefore(hoje);
+                    break;
+
+                case "VENCENDO_7_DIAS":
+                    produtos = repository.findByValidadeBetween(hoje, daqui7Dias);
+                    break;
+
+                case "ESTOQUE_BAIXO":
+                    // Busca produtos com quantidade > 0 e < 10
+                    produtos = repository.findEstoqueBaixo(ESTOQUE_BAIXO_LIMITE);
+                    break;
+
+                case "EM_FALTA":
+                    // Busca produtos com quantidade = 0
+                    produtos = repository.findByQuantidade(0);
+                    break;
+
+                default:
+                    // Se o filtro for desconhecido, retorna todos
+                    produtos = repository.findAll();
+                    break;
+            }
+        }
+
+        // 3. Converte a lista de Entidades para DTOs
+        return produtoMapper.toDTOList(produtos);
     }
 
     public ProdutoResponse acharPorId(Long id) {

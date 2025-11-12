@@ -2,6 +2,7 @@ package com.projeto_engenharia.demo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.projeto_engenharia.demo.enums.CategoriaProduto;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -27,6 +28,10 @@ public class Produto {
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "categoria", nullable = false)
+    private CategoriaProduto categoria;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC-3")
     @Column(name = "validade", nullable = false)
@@ -74,6 +79,14 @@ public class Produto {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public CategoriaProduto getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaProduto categoria) {
+        this.categoria = categoria;
     }
 
     public Date getValidade() {

@@ -1,5 +1,6 @@
 package com.projeto_engenharia.demo.dto;
 
+import com.projeto_engenharia.demo.enums.CategoriaProduto;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
@@ -18,6 +19,8 @@ public record ProdutoRequest(
         BigDecimal preco,
         @PositiveOrZero(message = "Quantidade não pode ser negativa")
         Integer quantidade,
+        @NotNull(message = "Categoria do produto não pode ser nula")
+        CategoriaProduto categoria,
         @NotNull(message = "Data de validade não pode ser nula.")
         LocalDate validade
 ) {

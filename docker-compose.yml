@@ -1,5 +1,8 @@
 services:
   stock-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: stock-manager-api:0.01
 
     ports:

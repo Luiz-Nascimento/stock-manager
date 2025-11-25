@@ -17,7 +17,7 @@ public record ProdutoUpdate(
         @DecimalMax(value = "5000", message = "O preço não pode exceder 5000 reais")
         BigDecimal preco,
         @NotNull(message = "Categoria do produto não pode estar nula")
-        CategoriaProduto categoriaProduto,
+        CategoriaProduto categoria,
         @PositiveOrZero(message = "Quantidade não pode ser negativa")
         Integer quantidade
 ) {

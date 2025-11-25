@@ -1,9 +1,6 @@
 package com.projeto_engenharia.demo.controller;
 
-import com.projeto_engenharia.demo.dto.DashboardStatsResponse;
-import com.projeto_engenharia.demo.dto.ProdutoRequest;
-import com.projeto_engenharia.demo.dto.ProdutoResponse;
-import com.projeto_engenharia.demo.dto.ProdutoUpdate;
+import com.projeto_engenharia.demo.dto.*;
 import com.projeto_engenharia.demo.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -41,6 +38,11 @@ public class ProdutoController {
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoResponse> atualizarProduto(@PathVariable Long id, @RequestBody @Valid ProdutoUpdate data) {
         ProdutoResponse response = service.atualizarProduto(id, data);
+        return ResponseEntity.ok(response);
+    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProdutoResponse> editarProduto(@PathVariable Long id, @RequestBody @Valid ProdutoPatchDTO data) {
+        ProdutoResponse response = service.editarProduto(id, data);
         return ResponseEntity.ok(response);
     }
 

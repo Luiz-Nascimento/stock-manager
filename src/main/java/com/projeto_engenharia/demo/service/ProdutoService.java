@@ -1,9 +1,6 @@
 package com.projeto_engenharia.demo.service;
 
-import com.projeto_engenharia.demo.dto.DashboardStatsResponse;
-import com.projeto_engenharia.demo.dto.ProdutoRequest;
-import com.projeto_engenharia.demo.dto.ProdutoResponse;
-import com.projeto_engenharia.demo.dto.ProdutoUpdate;
+import com.projeto_engenharia.demo.dto.*;
 import jakarta.persistence.EntityNotFoundException;
 import com.projeto_engenharia.demo.mapper.ProdutoMapper;
 import com.projeto_engenharia.demo.model.Produto;
@@ -93,6 +90,14 @@ public class ProdutoService {
                 .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado"));
         produtoMapper.updateFromDTO(data, produtoBuscado);
         Produto produtoAtualizado = repository.save(produtoBuscado);
+        return produtoMapper.toDTO(produtoAtualizado);
+    }
+    @Transactional
+    public ProdutoResponse editarProduto(Long id, ProdutoPatchDTO data) {
+        Produto produto = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado"));
+        produtoMapper.patchFromDTO(data, produto);
+        Produto produtoAtualizado = repository.save(produto);
         return produtoMapper.toDTO(produtoAtualizado);
     }
 

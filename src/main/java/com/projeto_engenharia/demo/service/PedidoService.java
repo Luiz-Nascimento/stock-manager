@@ -39,6 +39,7 @@ public class PedidoService {
         this.pedidoMapper = pedidoMapper;
     }
 
+
     @Transactional
     public PedidoResponse realizarVenda(PedidoRequest request) {
         Pedido pedido = new Pedido();
@@ -79,6 +80,11 @@ public class PedidoService {
 
     public List<PedidoResponse> listAll() {
         return pedidoMapper.toDtoList(pedidoRepository.findAll());
+    }
+
+    public PedidoResponse findById(Long id) {
+        return pedidoMapper.toDto(pedidoRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("Pedido não encontrado")));
     }
 
 

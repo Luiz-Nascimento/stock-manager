@@ -5,6 +5,7 @@ import com.projeto_engenharia.demo.dto.ItemPedidoResponse;
 import com.projeto_engenharia.demo.dto.PedidoRequest;
 import com.projeto_engenharia.demo.dto.PedidoResponse;
 import com.projeto_engenharia.demo.service.PedidoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class PedidoController {
     }
 
     @PostMapping()
-    public ResponseEntity<PedidoResponse> criar(@RequestBody PedidoRequest request) {
+    public ResponseEntity<PedidoResponse> criar(@RequestBody @Valid PedidoRequest request) {
         PedidoResponse response = pedidoService.realizarVenda(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

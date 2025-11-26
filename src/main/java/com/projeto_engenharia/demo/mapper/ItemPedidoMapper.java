@@ -11,6 +11,7 @@ import java.util.List;
 public interface ItemPedidoMapper {
 
     @Mapping(source = "produto.id", target = "idProduto")
+    @Mapping(source = "produto.nome", target = "nomeProduto")
     @Mapping(source = "valorTotal", target = "precoTotal")
     ItemPedidoResponse toDto(ItemPedido itemPedido);
 

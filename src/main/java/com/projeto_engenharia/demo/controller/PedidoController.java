@@ -26,6 +26,12 @@ public class PedidoController {
         return pedidoService.listAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PedidoResponse> findById(@PathVariable Long id) {
+        PedidoResponse response = pedidoService.findById(id);
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping()
     public ResponseEntity<PedidoResponse> criar(@RequestBody PedidoRequest request) {
         PedidoResponse response = pedidoService.realizarVenda(request);

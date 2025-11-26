@@ -21,7 +21,7 @@ public record ProdutoRequest(
         Integer quantidade,
         @NotNull(message = "Categoria do produto não pode ser nula")
         CategoriaProduto categoria,
-        @NotNull(message = "Data de validade não pode ser nula.")
-        LocalDate validade
+        LocalDate validade,
+        Integer garantiaMeses
 ) {
 }

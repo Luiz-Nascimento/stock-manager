@@ -33,10 +33,13 @@ public class Produto {
     @Column(name = "categoria", nullable = false)
     private CategoriaProduto categoria;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC-3")
-    @Column(name = "validade", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd", timezone = "UTC-3")
+    @Column(name = "validade", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date validade;
+
+    @Column(name = "garantia_meses")
+    private Integer garantiaMeses;
 
     public Produto() {
     }
@@ -95,6 +98,14 @@ public class Produto {
 
     public void setValidade(Date validade) {
         this.validade = validade;
+    }
+
+    public Integer getGarantiaMeses() {
+        return garantiaMeses;
+    }
+
+    public void setGarantiaMeses(Integer garantiaMeses) {
+        this.garantiaMeses = garantiaMeses;
     }
 
     @Override

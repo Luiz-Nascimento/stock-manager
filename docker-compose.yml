@@ -7,6 +7,9 @@ services:
 
     ports:
       - "8080:8080"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
 
     environment:
